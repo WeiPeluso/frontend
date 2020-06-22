@@ -1,11 +1,14 @@
 import React from 'react'
 
+
+
 const LoginForm = (props) => {
 
   return (
-    <div>
-      LoginForm
-    </div>
+    <form>
+      <label>Username: <input type="text" name="username" /></label>
+      <label>Password: <input type="password" name="password" /></label>
+    </form>
   )
 }
 
