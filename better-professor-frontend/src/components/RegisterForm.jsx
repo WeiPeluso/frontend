@@ -13,7 +13,7 @@ const RegisterForm = (props) => {
     <form>
       <label>Username: <input type="text" name="username" value={username} onChange={onTextChange} /></label>
       <label>Password: <input type="password" name="password" value={password} onChange={onTextChange}/></label>
-      <label>Register: <select name="department" value={department} onChange={onTextChange}>
+      <label>Department: <select name="department" value={department} onChange={onTextChange}>
         <option value=""> -- Please select a department -- </option>
         <option value="math">Math</option>
         <option value="science">Science</option>
@@ -21,6 +21,7 @@ const RegisterForm = (props) => {
         <option value="art">Art</option>
         <option value="history">History</option>
         </select></label>
+        <input type="submit" name="submit" value="Register"/>
     </form>
   )
 }

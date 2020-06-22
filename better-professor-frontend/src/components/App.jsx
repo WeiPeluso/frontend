@@ -24,8 +24,8 @@ function App() {
   const handlers = { onTextChange }
   return (
     <div className="App">
-      <LoginForm values={formValues} handlers={handlers} />
-      {/* <RegisterForm values={formValues} handlers={handlers}/> */}
+      {/* <LoginForm values={formValues} handlers={handlers} /> */}
+      <RegisterForm values={formValues} handlers={handlers}/>
     </div>
   );
 }
