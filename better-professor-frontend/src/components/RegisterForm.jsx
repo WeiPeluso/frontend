@@ -5,12 +5,12 @@ import React from 'react'
 const RegisterForm = (props) => {
   const { values, handlers } = props
   const { username, password, department } = values
-  const { onTextChange } = handlers
+  const { onTextChange, onSubmit } = handlers
 
 
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <label>Username: <input type="text" name="username" value={username} onChange={onTextChange} /></label>
       <label>Password: <input type="password" name="password" value={password} onChange={onTextChange}/></label>
       <label>Department: <select name="department" value={department} onChange={onTextChange}>
