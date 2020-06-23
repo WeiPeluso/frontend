@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
+import { login } from "../store/actions";
+import { connect } from "react-redux";
 
 const initialLoginFormValues = {
   username: "",
@@ -12,20 +13,15 @@ const LoginForm = (props) => {
     initialLoginFormValues
   );
   const history = useHistory();
+
   const onLoginTextChange = (evt) => {
     const { name, value } = evt.target;
     setLoginFormValues({ ...loginFormValues, [name]: value });
   };
   const onLoginSubmit = (evt) => {
     evt.preventDefault();
-    axiosWithAuth()
-      .post("api/auth/login", loginFormValues)
-      .then((res) => {
-        console.log(res);
-        history.push(`./user/${res.data.session.user.id}`);
-      })
-      .catch((err) => console.log(err));
-
+    props.login(loginFormValues);
+    history.push("./user");
     setLoginFormValues(initialLoginFormValues);
   };
 
@@ -54,4 +50,12 @@ const LoginForm = (props) => {
   );
 };
 
-export default LoginForm;
+const mapState = (state) => {
+  return {
+    username: state.userReducer.username,
+    id: state.userReducer.id,
+    department: state.userReducer.id,
+  };
+};
+
+export default connect(mapState, { login })(LoginForm);
