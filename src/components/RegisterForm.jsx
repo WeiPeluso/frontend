@@ -67,7 +67,7 @@ const RegisterForm = (props) => {
   return (
     <FormContainer>
       <StyledForm onSubmit={onRegisterSubmit}>
-        <h2>Register</h2>
+        <StyledHeading>Register</StyledHeading>
         <label>
           Username:{" "}
           <input
@@ -102,13 +102,13 @@ const RegisterForm = (props) => {
           </select>
         </label>
 
-        <input type="submit" name="submit" value="Register" disabled={disabled}/>
-
         <div className="errors">
           <div className="error">{errorList.username}</div>
           <div className="error">{errorList.password}</div>
           <div className="error">{errorList.department}</div>
         </div>
+
+        <StyledSubmit type="submit" name="submit" value="Register" disabled={disabled}/>
       </StyledForm>
     </FormContainer>
   );
@@ -121,11 +121,13 @@ const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Roboto Slab', serif;
 `
 const StyledForm = styled.form`
   width: 70%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 20px;
+  box-shadow: 1px 1px 5px black;
   margin-top: 5%;
   box-sizing: border-box;
   padding: 3%;
@@ -133,8 +135,26 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
 
+  label {
+    color: #0A2738;
+  }
+  input {
+    border: 1px solid #66889C;
+    border-radius: 2px;
+  }
+
   * {
     margin-top: 1.5%;
     margin-bottom: 1.5%;
   }
+`
+const StyledHeading = styled.h2`
+  color: #2196F3;
+`
+const StyledSubmit = styled.input`
+  background-color: #2196F3;
+  color: white;
+  border-radius: 10px !important;
+  border: none;
+  padding: .5rem 3rem;
 `
