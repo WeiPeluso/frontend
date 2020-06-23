@@ -8,11 +8,13 @@ import styled from 'styled-components'
 const initialRegisterFormValues = {
   username: "",
   password: "",
+  confirmPassword: "",
   department: "",
 };
 const initialErrorList = {
   username: '',
   password: '',
+  confirmPassword: '',
   department: ''
 }
 
@@ -89,6 +91,16 @@ const RegisterForm = (props) => {
           />
         </label>
         <label>
+          Confirm password:{" "}
+          <input
+            type="password"
+            name="confirmPassword"
+            value={registerFormValues.confirmPassword}
+            onChange={onRegisterTextChange}
+            placeholder='Re-enter password'
+          />
+        </label>
+        <label>
           Department:{" "}
           <select
             name="department"
@@ -107,6 +119,7 @@ const RegisterForm = (props) => {
         <div className="errors">
           <div className="error">{errorList.username}</div>
           <div className="error">{errorList.password}</div>
+          <div className="error">{errorList.confirmPassword}</div>
           <div className="error">{errorList.department}</div>
         </div>
 
