@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
 const initialRegisterFormValues = {
   username: "",
@@ -10,14 +12,23 @@ const RegisterForm = (props) => {
   const [registerFormValues, setRegisterFormValues] = useState(
     initialRegisterFormValues
   );
+  const history = useHistory();
 
   const onRegisterTextChange = (evt) => {
     const { name, value } = evt.target;
-    console.log(evt.target.value);
     setRegisterFormValues({ ...registerFormValues, [name]: value });
   };
   const onRegisterSubmit = (evt) => {
     evt.preventDefault();
+    console.log(registerFormValues);
+    axiosWithAuth()
+      .post("/api/auth/register", registerFormValues)
+      .then((res) => {
+        history.push("./login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setRegisterFormValues(initialRegisterFormValues);
   };
   return (

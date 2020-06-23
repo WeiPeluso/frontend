@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
 const initialLoginFormValues = {
   username: "",
@@ -9,13 +11,21 @@ const LoginForm = (props) => {
   const [loginFormValues, setLoginFormValues] = useState(
     initialLoginFormValues
   );
+  const history = useHistory();
   const onLoginTextChange = (evt) => {
     const { name, value } = evt.target;
-    console.log(evt.target.value);
     setLoginFormValues({ ...loginFormValues, [name]: value });
   };
   const onLoginSubmit = (evt) => {
     evt.preventDefault();
+    axiosWithAuth()
+      .post("api/auth/login", loginFormValues)
+      .then((res) => {
+        console.log(res);
+        history.push(`./user/${res.data.session.user.id}`);
+      })
+      .catch((err) => console.log(err));
+
     setLoginFormValues(initialLoginFormValues);
   };
 
