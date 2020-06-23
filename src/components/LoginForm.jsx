@@ -67,6 +67,7 @@ const LoginForm = (props) => {
             name="username"
             value={loginFormValues.username}
             onChange={onLoginTextChange}
+            placeholder='Enter your user name'
           />
         </label>
         <label>
@@ -76,6 +77,7 @@ const LoginForm = (props) => {
             name="password"
             value={loginFormValues.password}
             onChange={onLoginTextChange}
+            placeholder='Enter your password'
           />
         </label>
 

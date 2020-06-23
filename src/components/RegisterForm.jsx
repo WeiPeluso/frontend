@@ -75,6 +75,7 @@ const RegisterForm = (props) => {
             name="username"
             value={registerFormValues.username}
             onChange={onRegisterTextChange}
+            placeholder='Enter your user name'
           />
         </label>
         <label>
@@ -84,6 +85,7 @@ const RegisterForm = (props) => {
             name="password"
             value={registerFormValues.password}
             onChange={onRegisterTextChange}
+            placeholder='Create a password'
           />
         </label>
         <label>
