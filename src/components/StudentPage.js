@@ -2,24 +2,23 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const StudentPage = () => {
-  const { name } = useParams();
-  const students = useSelector((state) => state.userReducer.students);
-  console.log(name);
-
-  const student = students.filter((student) => student.name === name);
+const StudentPage = (props) => {
+  const { id } = useParams();
+  console.log(id);
+  const student = props.location.state;
+  console.log(student);
 
   return (
     <>
-      {student[0] && (
+      {student && (
         <>
-          <p>{student[0].name}</p>
-          <p>{student[0].email}</p>
-          <p>{student[0].subject}</p>
+          <p>{student.name}</p>
+          <p>{student.email}</p>
+          <p>{student.subject}</p>
         </>
       )}
 
-      {student[0] && student[0].projects && (
+      {student && student.projects && (
         <>
           <div className="projectSection">
             {student[0].projects.map((project) => {

@@ -21,7 +21,6 @@ export const login = (user) => (dispatch) => {
 
 export const ADD_STUDENT = "ADD_STUDENT";
 export const addStudent = (student) => {
-  //console.log(student);
   return {
     type: ADD_STUDENT,
     payload: student,

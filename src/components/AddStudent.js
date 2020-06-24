@@ -28,7 +28,6 @@ const AddStudent = () => {
     axiosWithAuth()
       .post(`/api/users/teacher/${userID}/students`, student)
       .then((res) => {
-        addStudentDispatch(addStudent(student));
         history.push("/user");
       })
       .catch((err) => {

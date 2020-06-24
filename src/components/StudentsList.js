@@ -9,7 +9,10 @@ const StudentList = (props) => {
         return (
           <div key={index}>
             <Link
-              to={`/student/${student.name}`}
+              to={{
+                pathname: `/student/${student.id}`,
+                state: student,
+              }}
               style={{ textDecoration: "none" }}
             >
               <p>{student.name}</p>

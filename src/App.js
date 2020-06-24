@@ -27,9 +27,7 @@ function App() {
       <Route exact path="/addstudent">
         <AddStudent />
       </Route>
-      <Route exact path="/student/:name">
-        <StudentPage />
-      </Route>
+      <Route path="/student/:id" component={StudentPage} />
     </Router>
   );
 }
