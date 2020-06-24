@@ -1,42 +1,155 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const StudentPage = (props) => {
+const StudentPage = () => {
   const { id } = useParams();
-  console.log(id);
-  const student = props.location.state;
-  console.log(student);
+  const history = useHistory();
+  const userID = useSelector((state) => state.userReducer.id);
+  const [student, setStudent] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [refresh, setRefresh] = useState(true);
+  const [editStudent, setEditStudent] = useState({
+    name: "",
+    email: "",
+    subject: "",
+  });
+  const [editToggle, setEditToggle] = useState(false);
 
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/users/teacher/${userID}/students/${id}`)
+      .then((res) => {
+        setStudent(res.data[0]);
+        setEditStudent(res.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [refresh]);
+
+  useEffect(() => {
+    console.log(userID);
+    axiosWithAuth()
+      .get(`/api/users/teacher/${userID}/students/projects`)
+      .then((res) => {
+        console.log(res.data);
+
+        setProjects(
+          res.data.filter((project) => {
+            return project.student_id == id;
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [refresh]);
+  const addProjectHandler = (e) => {
+    e.preventDefault();
+    history.push(`/student/addproject/${id}`);
+  };
+
+  const deleteHandler = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .delete(`api/users/teacher/${userID}/students/${id}`)
+      .then((res) => {
+        history.push("/user");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const editStudentHandler = (e) => {
+    e.preventDefault();
+    setEditToggle(true);
+  };
+
+  const EditStudentChange = (e) => {
+    e.preventDefault();
+    setEditStudent({
+      ...editStudent,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const onEditSubmit = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .put(`/api/users/teacher/${userID}/students/${id}`, editStudent)
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setEditToggle(false);
+        setRefresh(!refresh);
+      });
+  };
+  const cancelEdit = (e) => {
+    setEditToggle(false);
+  };
   return (
     <>
-      {student && (
+      <button onClick={addProjectHandler}>Add a Project</button>
+      <button onClick={editStudentHandler}>Edit</button>
+      <button onClick={deleteHandler}>Delete</button>
+      {editToggle ? (
         <>
-          <p>{student.name}</p>
-          <p>{student.email}</p>
-          <p>{student.subject}</p>
+          <form onSubmit={onEditSubmit}>
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={editStudent.name}
+              onChange={EditStudentChange}
+            />
+            <label>Email:</label>
+            <input
+              type="text"
+              name="email"
+              value={editStudent.email}
+              onChange={EditStudentChange}
+            />
+            <label>Subject:</label>
+            <input
+              type="text"
+              name="subject"
+              value={editStudent.subject}
+              onChange={EditStudentChange}
+            />
+            <button type="submit">Submit</button>
+            <button onClick={cancelEdit}>Cancel</button>
+          </form>
+        </>
+      ) : (
+        <>
+          <p>Name:&nbsp;{student.name}</p>
+          <p>Email:&nbsp;{student.email}</p>
+          <p>Subject:&nbsp;{student.subject}</p>
         </>
       )}
 
-      {student && student.projects && (
+      {projects && (
         <>
           <div className="projectSection">
-            {student[0].projects.map((project) => {
+            {projects.map((project, index) => {
               return (
-                <div>
-                  <p>{project.type}</p>
-                  <p>{project.date}</p>
-                  <p>{project.description}</p>
+                <div key={index}>
+                  <p>Project Name:&nbsp;{project.project_name}</p>
+                  <p>Project Type:&nbsp;{project.project_type}</p>
+                  <p>Due Date:&nbsp; {project.due_date}</p>
+                  <p>Description:&nbsp;{project.desc}</p>
+                  <button>Edit</button>
+                  <button>Completed</button>
                 </div>
               );
             })}
           </div>
         </>
       )}
-
-      <button>Add a Project</button>
-      <button>Edit</button>
-      <button>Delete</button>
     </>
   );
 };

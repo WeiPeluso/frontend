@@ -43,8 +43,13 @@ const LoginForm = (props) => {
   };
   const onLoginSubmit = (evt) => {
     evt.preventDefault();
-    props.login(loginFormValues);
-    history.push("./user");
+    props.login(loginFormValues).then((res) => {
+      if (res) {
+        history.push("/login");
+      } else {
+        history.push("/user");
+      }
+    });
     setLoginFormValues(initialLoginFormValues);
   };
   useEffect(() => {
@@ -97,9 +102,8 @@ const LoginForm = (props) => {
 
 const mapState = (state) => {
   return {
-    username: state.userReducer.username,
     id: state.userReducer.id,
-    department: state.userReducer.id,
+    isValid: state.userReducer.isValid,
   };
 };
 

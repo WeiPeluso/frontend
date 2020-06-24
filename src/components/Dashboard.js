@@ -8,8 +8,6 @@ const Dashboard = (props) => {
   const userID = useSelector((state) => state.userReducer.id);
   const refresh = useSelector((state) => state.userReducer.refresh);
   const [students, setStudents] = useState([]);
-  console.log(userID);
-  console.log(refresh);
   useEffect(() => {
     if (userID !== 0) {
       axiosWithAuth()

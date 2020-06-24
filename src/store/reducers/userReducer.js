@@ -5,10 +5,9 @@ import {
   ADD_STUDENT,
   Add,
 } from "../actions";
+
 const initalUser = {
-  username: "",
   id: 0,
-  subject: "",
   refresh: false,
 };
 const UserReducer = (state = initalUser, action) => {

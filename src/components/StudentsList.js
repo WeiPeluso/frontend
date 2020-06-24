@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import StudentCard from "./StudentCard";
 
 const StudentList = (props) => {
   return (
@@ -9,15 +10,10 @@ const StudentList = (props) => {
         return (
           <div key={index}>
             <Link
-              to={{
-                pathname: `/student/${student.id}`,
-                state: student,
-              }}
+              to={`/student/${student.id}`}
               style={{ textDecoration: "none" }}
             >
-              <p>{student.name}</p>
-              <p>{student.email}</p>
-              <p>{student.subject}</p>
+              <StudentCard student={student} />
             </Link>
           </div>
         );
