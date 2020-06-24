@@ -5,6 +5,8 @@ import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./utils/PrivateRoute";
+import AddStudent from "./components/AddStudent";
+import StudentPage from "./components/StudentPage";
 function App() {
   return (
     <Router>
@@ -22,6 +24,12 @@ function App() {
       <PrivateRoute exact path="/user">
         <Dashboard />
       </PrivateRoute>
+      <Route exact path="/addstudent">
+        <AddStudent />
+      </Route>
+      <Route exact path="/student/:name">
+        <StudentPage />
+      </Route>
     </Router>
   );
 }

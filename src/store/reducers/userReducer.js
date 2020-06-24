@@ -1,8 +1,14 @@
-import { LOGIN_START, LOGIN_SUCCESSS, LOGIN_FAILURE } from "../actions";
+import {
+  LOGIN_START,
+  LOGIN_SUCCESSS,
+  LOGIN_FAILURE,
+  ADD_STUDENT,
+  Add,
+} from "../actions";
 const initalUser = {
   username: "",
   id: 0,
-  department: "",
+  subject: "",
   students: [],
 };
 const UserReducer = (state = initalUser, action) => {
@@ -14,10 +20,16 @@ const UserReducer = (state = initalUser, action) => {
         ...state,
         id: action.payload.id,
         username: action.payload.username,
-        department: action.payload.department,
+        subject: action.payload.subject,
       };
     case LOGIN_FAILURE:
       return { ...state };
+
+    case ADD_STUDENT:
+      return {
+        ...state,
+        students: [...state.students, action.payload],
+      };
     default:
       return { ...state };
   }

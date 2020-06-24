@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 const initialRegisterFormValues = {
   username: "",
   password: "",
-  department: "",
+  subject: "",
 };
 
 const RegisterForm = (props) => {
@@ -52,13 +52,13 @@ const RegisterForm = (props) => {
         />
       </label>
       <label>
-        Department:{" "}
+        Subject:{" "}
         <select
-          name="department"
-          value={registerFormValues.department}
+          name="subject"
+          value={registerFormValues.subject}
           onChange={onRegisterTextChange}
         >
-          <option value=""> -- Please select a department -- </option>
+          <option value=""> -- Please select a subject -- </option>
           <option value="math">Math</option>
           <option value="science">Science</option>
           <option value="english">English</option>
