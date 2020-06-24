@@ -19,11 +19,6 @@ const StudentPage = (props) => {
             <p><LabelSpan>Subject:</LabelSpan> {student.subject}</p>
           </StudentInfoDiv>
         )}
-        <StudentInfoDiv>
-          <p><LabelSpan>Name:</LabelSpan> John Doe</p>
-          <p><LabelSpan>Email:</LabelSpan> John@doe.com</p>
-          <p><LabelSpan>Subject:</LabelSpan> Math</p>
-        </StudentInfoDiv>
 
         {student && student.projects && (
           <ProjectDisplay>
@@ -40,20 +35,6 @@ const StudentPage = (props) => {
             </div>
           </ProjectDisplay>
         )}
-        <ProjectDisplay>
-          <div className="projectSection">
-            <ProjectDiv>
-              <p><LabelSpan>Project: </LabelSpan>Project #1</p>
-              <p><LabelSpan>Date: </LabelSpan>6/25/20</p>
-              <p><LabelSpan>Description: </LabelSpan>Some project description.</p>
-            </ProjectDiv>
-            <ProjectDiv>
-              <p><LabelSpan>Project: </LabelSpan>Project #2</p>
-              <p><LabelSpan>Date: </LabelSpan>6/25/20</p>
-              <p><LabelSpan>Description: </LabelSpan>Some project description.</p>
-            </ProjectDiv>
-          </div>
-        </ProjectDisplay>
 
         <ButtonContainer>
           <StyledButton>Add a Project</StyledButton>
