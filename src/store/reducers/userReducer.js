@@ -9,7 +9,7 @@ const initalUser = {
   username: "",
   id: 0,
   subject: "",
-  students: [],
+  refresh: false,
 };
 const UserReducer = (state = initalUser, action) => {
   switch (action.type) {
@@ -21,7 +21,7 @@ const UserReducer = (state = initalUser, action) => {
         id: action.payload.id,
         username: action.payload.username,
         subject: action.payload.subject,
-        students: [...state.students, action.payload],
+        refresh: !state.refresh,
       };
     case LOGIN_FAILURE:
       return { ...state };
