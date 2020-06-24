@@ -14,7 +14,7 @@ function App() {
         <nav>
           <Link to="/">Home</Link>
           <Link to="/login">Login</Link>
-          <Link to="/studentlist">Student List</Link>
+          <Link to="/user">Dashboard</Link>
           <Link to="/register">Register Now</Link>
         </nav>
       </div>

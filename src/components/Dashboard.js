@@ -17,7 +17,7 @@ const Dashboard = (props) => {
         <Link to="/addstudent">
           <button>Add a Student</button>
         </Link>
-        <StudentsList />
+        <StudentsList students={students} />
       </div>
     </>
   );

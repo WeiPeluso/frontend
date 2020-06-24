@@ -2,13 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const StudentList = () => {
-  const students = useSelector((state) => state.userReducer.students);
-  console.log(students);
-
+const StudentList = (props) => {
   return (
     <>
-      {students.map((student, index) => {
+      {props.students.map((student, index) => {
         return (
           <div key={index}>
             <Link

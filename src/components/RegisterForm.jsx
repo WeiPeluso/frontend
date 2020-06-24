@@ -92,7 +92,7 @@ const RegisterForm = (props) => {
         <label>
           Subject:{" "}
           <select
-            name="department"
+            name="subject"
             value={registerFormValues.subject}
             onChange={onRegisterTextChange}
           >

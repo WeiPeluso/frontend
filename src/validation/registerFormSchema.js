@@ -7,7 +7,7 @@ const registerFormSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Your password must be at least 8 characters long.")
     .required("Please enter your desired password."),
-  department: Yup.string().required("You must select a department."),
+  subject: Yup.string().required("You must select a department."),
 });
 
 export default registerFormSchema;

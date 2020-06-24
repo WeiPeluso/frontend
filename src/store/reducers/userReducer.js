@@ -21,6 +21,7 @@ const UserReducer = (state = initalUser, action) => {
         id: action.payload.id,
         username: action.payload.username,
         subject: action.payload.subject,
+        students: [...state.students, action.payload],
       };
     case LOGIN_FAILURE:
       return { ...state };
