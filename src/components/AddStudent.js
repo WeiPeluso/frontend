@@ -34,9 +34,6 @@ const AddStudent = () => {
       .catch((err) => {
         console.log(err);
       });
-
-    // addStudentDispatch(addStudent(student));
-    // history.push("/user");
   };
 
   return (
