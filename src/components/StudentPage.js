@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import styled from 'styled-components'
 
 const StudentPage = (props) => {
   const { id } = useParams();
@@ -9,36 +10,111 @@ const StudentPage = (props) => {
   console.log(student);
 
   return (
-    <>
-      {student && (
-        <>
-          <p>{student.name}</p>
-          <p>{student.email}</p>
-          <p>{student.subject}</p>
-        </>
-      )}
+    <StudentPageContainer>
+      <StudentPageDiv>
+        {student && (
+          <StudentInfoDiv>
+            <p><LabelSpan>Name:</LabelSpan> {student.name}</p>
+            <p><LabelSpan>Email:</LabelSpan> {student.email}</p>
+            <p><LabelSpan>Subject:</LabelSpan> {student.subject}</p>
+          </StudentInfoDiv>
+        )}
+        <StudentInfoDiv>
+          <p><LabelSpan>Name:</LabelSpan> John Doe</p>
+          <p><LabelSpan>Email:</LabelSpan> John@doe.com</p>
+          <p><LabelSpan>Subject:</LabelSpan> Math</p>
+        </StudentInfoDiv>
 
-      {student && student.projects && (
-        <>
+        {student && student.projects && (
+          <ProjectDisplay>
+            <div className="projectSection">
+              {student[0].projects.map((project) => {
+                return (
+                  <ProjectDiv>
+                    <p><LabelSpan>Project: </LabelSpan>{project.type}</p>
+                    <p><LabelSpan>Date: </LabelSpan>{project.date}</p>
+                    <p><LabelSpan>Description: </LabelSpan>{project.description}</p>
+                  </ProjectDiv>
+                );
+              })}
+            </div>
+          </ProjectDisplay>
+        )}
+        <ProjectDisplay>
           <div className="projectSection">
-            {student[0].projects.map((project) => {
-              return (
-                <div>
-                  <p>{project.type}</p>
-                  <p>{project.date}</p>
-                  <p>{project.description}</p>
-                </div>
-              );
-            })}
+            <ProjectDiv>
+              <p><LabelSpan>Project: </LabelSpan>Project #1</p>
+              <p><LabelSpan>Date: </LabelSpan>6/25/20</p>
+              <p><LabelSpan>Description: </LabelSpan>Some project description.</p>
+            </ProjectDiv>
+            <ProjectDiv>
+              <p><LabelSpan>Project: </LabelSpan>Project #2</p>
+              <p><LabelSpan>Date: </LabelSpan>6/25/20</p>
+              <p><LabelSpan>Description: </LabelSpan>Some project description.</p>
+            </ProjectDiv>
           </div>
-        </>
-      )}
+        </ProjectDisplay>
 
-      <button>Add a Project</button>
-      <button>Edit</button>
-      <button>Delete</button>
-    </>
+        <ButtonContainer>
+          <StyledButton>Add a Project</StyledButton>
+          <StyledButton>Edit</StyledButton>
+          <StyledButton>Delete</StyledButton>
+        </ButtonContainer>
+      </StudentPageDiv>
+    </StudentPageContainer>
   );
 };
 
 export default StudentPage;
+
+const StudentPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const StudentPageDiv = styled.div`
+  background-color: lightgoldenrodyellow;
+  padding: 3%;
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 0 0 2px black;
+  margin: 2%;
+`
+const StudentInfoDiv = styled.div`
+  box-shadow: 0 0 1px black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+`
+const LabelSpan = styled.span`
+  color: gray;
+`
+const ProjectDisplay = styled.div`
+  margin-top: 1%;
+  border-radius: 5px;
+  padding: 1%;
+`
+const ProjectDiv = styled.div`
+  margin: 1%;
+  padding: 1.5% 3%;
+  /* background-color: red; */
+  box-shadow: 0 0 1px black;
+  border-radius: 5px;
+`
+const StyledButton = styled.button`
+  text-decoration: none;
+  color: white;
+  background-color: #0A2738;
+  padding: .5rem 1.5rem;
+  border-radius: 20px;
+  box-shadow: 1px 1px 2px black;
+
+  &:hover {
+    background-color: #A1A7AA;
+    color: black;
+  }
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`

@@ -60,7 +60,7 @@ const ButtonLink = styled(Link)`
   background-color: #0A2738;
   padding: .5rem 1.5rem;
   border-radius: 20px;
-  box-shadow: 1px 1px 3px black;
+  box-shadow: 1px 1px 2px black;
 
   &:hover {
     background-color: #A1A7AA;
