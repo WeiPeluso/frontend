@@ -29,12 +29,12 @@ const Dashboard = (props) => {
         This is the reminder section, coming soon!
       </ReminderDiv>
 
-      <div className="students">
+      <StudentsListDiv className="students">
         <ButtonLink to="/addstudent">
           Add a Student
         </ButtonLink>
         <StudentsList students={students} />
-      </div>
+      </StudentsListDiv>
     </DashboardContainer>
   );
 };
@@ -66,4 +66,10 @@ const ButtonLink = styled(Link)`
     background-color: #A1A7AA;
     color: black;
   }
+`
+const StudentsListDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
