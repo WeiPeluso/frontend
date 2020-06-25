@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import StudentCard from "./StudentCard";
 import styled from "styled-components";
 
 const StudentList = (props) => {

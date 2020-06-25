@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import styled from "styled-components";
 
 const AddStudent = () => {
   const userID = useSelector((state) => state.userReducer.id);
-  const addStudentDispatch = useDispatch();
   const history = useHistory();
   const [student, setStudent] = useState({
     name: "",

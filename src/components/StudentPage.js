@@ -28,7 +28,7 @@ const StudentPage = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [refresh]);
+  }, [refresh, id, userID]);
 
   useEffect(() => {
     console.log(userID);

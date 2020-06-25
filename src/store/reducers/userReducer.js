@@ -3,7 +3,6 @@ import {
   LOGIN_SUCCESSS,
   LOGIN_FAILURE,
   ADD_STUDENT,
-  Add,
 } from "../actions";
 
 const initalUser = {

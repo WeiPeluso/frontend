@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StudentsList from "./StudentsList";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useSelector } from "react-redux";
@@ -20,7 +20,7 @@ const Dashboard = (props) => {
           console.log(err);
         });
     }
-  }, [refresh]);
+  }, [refresh, userID]);
   return (
     <DashboardContainer>
       <ReminderDiv className="reminder">
