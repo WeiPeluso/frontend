@@ -14,30 +14,31 @@ import PrivateRoute from "./utils/PrivateRoute";
 import AddStudent from "./components/AddStudent";
 import StudentPage from "./components/StudentPage";
 import AddProject from "./components/AddProject";
+import { useSelector } from "react-redux";
 function App() {
   const [status, setStatus] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
+    console.log(status);
     if (localStorage.getItem("token")) {
       setStatus(true);
     }
-  }, []);
+  }, [useSelector((state) => state.userReducer.refresh)]);
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    window.location.reload(true);
+    window.location.assign("/login");
+    setStatus(false);
+  };
   return (
     <Router>
       <div className="App">
         {status ? (
           <nav>
             <Link to="/">Home</Link>
-            <Link
-              onClick={() => {
-                localStorage.removeItem("token");
-                window.location.reload();
-                history.push("/");
-              }}
-            >
-              Logout
-            </Link>
+            <Link onClick={logoutHandler}>Logout</Link>
             <Link to="/userdashboard">Dashboard</Link>
             <Link to="/register">Register Now</Link>
           </nav>
@@ -49,12 +50,6 @@ function App() {
             <Link to="/register">Register Now</Link>
           </nav>
         )}
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/userdashboard">Dashboard</Link>
-          <Link to="/register">Register Now</Link>
-        </nav>
       </div>
       <Switch>
         <PrivateRoute exact path="/userdashboard" component={Dashboard} />
