@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import StudentsList from "./StudentsList";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 const Dashboard = (props) => {
   const userID = useSelector((state) => state.userReducer.id);
@@ -21,19 +22,49 @@ const Dashboard = (props) => {
     }
   }, [refresh]);
   return (
-    <>
-      <div className="reminder">
-        This is the reminder section , comming up soon
-      </div>
+    <DashboardContainer>
+      <ReminderDiv className="reminder">
+        This is the reminder section, coming soon!
+      </ReminderDiv>
 
-      <div className="students">
-        <Link to="/addstudent">
-          <button>Add a Student</button>
-        </Link>
+      <StudentsListDiv className="students">
+        <ButtonLink to="/addstudent">Add a Student</ButtonLink>
         <StudentsList students={students} />
-      </div>
-    </>
+      </StudentsListDiv>
+    </DashboardContainer>
   );
 };
 
 export default Dashboard;
+
+const DashboardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const ReminderDiv = styled.div`
+  background-color: lightgoldenrodyellow;
+  border-radius: 5px;
+  padding: 3%;
+  width: 90%;
+  margin: 2%;
+  box-shadow: 0 0 3px black;
+`;
+const ButtonLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  background-color: #0a2738;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  box-shadow: 1px 1px 2px black;
+  &:hover {
+    background-color: #a1a7aa;
+    color: black;
+  }
+`;
+const StudentsListDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
