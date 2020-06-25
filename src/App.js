@@ -14,7 +14,7 @@ function App() {
   const [status, setStatus] = useState(false);
 
   useEffect(() => {
-    console.log(status);
+    // console.log(status);
     if (localStorage.getItem("token")) {
       setStatus(true);
     }
@@ -35,14 +35,14 @@ function App() {
             <StyledLink to="/login" onClick={logoutHandler}>
               Logout
             </StyledLink>
-            <StyledLink to="/user">Dashboard</StyledLink>
+            <StyledLink to="/userdashboard">Dashboard</StyledLink>
             <StyledLink to="/register">Register Now</StyledLink>
           </StyledNav>
         ) : (
           <StyledNav>
             <StyledLink to="/">Home</StyledLink>
             <StyledLink to="/login">Login</StyledLink>
-            <StyledLink to="/user">Dashboard</StyledLink>
+            <StyledLink to="/userdashboard">Dashboard</StyledLink>
             <StyledLink to="/register">Register Now</StyledLink>
           </StyledNav>
         )}
@@ -72,6 +72,7 @@ const StyledNav = styled.nav`
   justify-content: space-around;
   align-items: center;
   box-shadow: 0 0 3px black;
+  font-size: 1.5rem;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;

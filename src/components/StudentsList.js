@@ -7,7 +7,7 @@ const StudentList = (props) => {
     <StudentListContainer>
       {props.students.map((student, index) => {
         return (
-          <div key={index}>
+          <IDKSomeContainer key={index}>
             <StudentContainerLink
               to={{
                 pathname: `/student/${student.id}`,
@@ -28,7 +28,7 @@ const StudentList = (props) => {
                 {student.subject}
               </p>
             </StudentContainerLink>
-          </div>
+          </IDKSomeContainer>
         );
       })}
     </StudentListContainer>
@@ -54,7 +54,14 @@ const StudentContainerLink = styled(Link)`
   border-radius: 10px;
   box-shadow: 0 0 2px black;
   color: black;
+  &:hover {
+    background-color: #00ffff;
+  }
 `;
 const LabelSpan = styled.span`
   color: gray;
+`;
+const IDKSomeContainer = styled.div`
+  margin-top: 1%;
+  margin-bottom: 1%;
 `;
