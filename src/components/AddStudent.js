@@ -22,7 +22,7 @@ const AddStudent = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(student);
+    //  console.log(student);
 
     axiosWithAuth()
       .post(`/api/users/teacher/${userID}/students`, student)
