@@ -32,7 +32,10 @@ const Reminder = (props) => {
 
   const getProjetDue = (projects) => {
     const projectsDueInAWeek = projects.filter((project) => {
-      return calculateDate(project.due_date) <= 7;
+      return (
+        calculateDate(project.due_date) <= 7 &&
+        calculateDate(project.due_date) >= 0
+      );
     });
     return projectsDueInAWeek;
   };
@@ -107,7 +110,7 @@ export default Reminder;
 
 const MainContainer = styled.div`
   box-sizing: border-box;
-  margin-top: 2%;
+  margin-top: 1%;
   width: 97%;
   box-shadow: 0 0 3px black;
   border-radius: 5px;

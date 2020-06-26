@@ -26,17 +26,20 @@ const Dashboard = (props) => {
     }
   }, [refresh, userID]);
   return (
-    <DashboardContainer>
-      <ReminderDiv className="reminder">
-        <h2>Projects Due in a Week</h2>
-        <Reminder students={students} />
-      </ReminderDiv>
+    <>
+      <h2> Welcome Professor {tokenObject.username}</h2>
+      <DashboardContainer>
+        <ReminderDiv className="reminder">
+          <h2>Projects Due in a Week</h2>
+          <Reminder students={students} />
+        </ReminderDiv>
 
-      <StudentsListDiv className="students">
-        <ButtonLink to="/addstudent">Add a Student</ButtonLink>
-        <StudentsList students={students} />
-      </StudentsListDiv>
-    </DashboardContainer>
+        <StudentsListDiv className="students">
+          <ButtonLink to="/addstudent">Add a Student</ButtonLink>
+          <StudentsList students={students} />
+        </StudentsListDiv>
+      </DashboardContainer>
+    </>
   );
 };
 
@@ -50,10 +53,16 @@ const DashboardContainer = styled.div`
 const ReminderDiv = styled.div`
   background-color: lightgoldenrodyellow;
   border-radius: 5px;
-  padding: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
   width: 90%;
-  margin: 2%;
+  margin-bottom: 2%;
   box-shadow: 0 0 3px black;
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
 `;
 const ButtonLink = styled(Link)`
   text-decoration: none;
